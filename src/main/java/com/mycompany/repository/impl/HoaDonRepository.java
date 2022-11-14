@@ -88,7 +88,7 @@ public class HoaDonRepository implements ICommonRepository<HoaDon, Boolean, Stri
 
     @Override
     public Boolean remove(String ma) {
-        String hql = "UPDATE " + fromTable + "SET trangThai = 3"
+        String hql = "UPDATE " + fromTable + "SET trangThai = 0"
                 + "WHERE maHoaDon = :maHoaDon";
         Transaction transaction = null;
         int check = 0;
@@ -96,6 +96,26 @@ public class HoaDonRepository implements ICommonRepository<HoaDon, Boolean, Stri
             transaction = session.beginTransaction();
             session.clear();
             Query query = session.createQuery(hql);
+            query.setParameter("maHoaDon", ma);
+            check = query.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+
+    public Boolean updateHoaDonDaThanhToan(HoaDon kh, String ma) {
+        String hql = "UPDATE " + fromTable + "SET trangThai = :trangThai "
+                + "WHERE maHoaDon = :maHoaDon";
+        Transaction transaction = null;
+        int check = 0;
+        try {
+            transaction = session.beginTransaction();
+            session.clear();
+            Query query = session.createQuery(hql);
+            query.setParameter("trangThai", 1);
             query.setParameter("maHoaDon", ma);
             check = query.executeUpdate();
             transaction.commit();
@@ -119,15 +139,16 @@ public class HoaDonRepository implements ICommonRepository<HoaDon, Boolean, Stri
 //        }
 //    }
     public static void main(String[] args) {
-        NhanVien nv = new NhanVien();
-        nv.setId("E26EFCD1-8F31-446A-B791-5A11F3ED0C2A");
+//        NhanVien nv = new NhanVien();
+//        nv.setId("E26EFCD1-8F31-446A-B791-5A11F3ED0C2A");
 //        KhachHang kh = new KhachHang();
 //        kh.setId("09D9DF89-6F3E-4DD1-8B1E-55E1835F3CEC");
         // HoaDon hd = new  HoaDon(null, "HD02", nv, kh, Date.valueOf("2022-11-11"),Date.valueOf("2022-11-11"), BigDecimal.valueOf(300000), "Tiền mặt", BigDecimal.valueOf(500000), "HIiii", 0);
 
-        HoaDon hoaDon = new HoaDonRepository().getOne("HD5");
-        hoaDon.setTrangThai(3);
-        Boolean test = new HoaDonRepository().update(hoaDon, "HD5");
+        HoaDon hoaDon = new HoaDonRepository().getOne("HD491295");
+        hoaDon.setTrangThai(1);
+        hoaDon.setGhiChu("CCCCCCC");
+        Boolean test = new HoaDonRepository().remove(hoaDon.getMaHoaDon());
         System.out.println(test);
     }
 }

@@ -22,6 +22,7 @@ import java.util.List;
 public class HoaDonService implements ICommonService<HoaDon, String> {
 
     private ICommonRepository hdr = new HoaDonRepository();
+    private HoaDonRepository hdr2 = new HoaDonRepository();
 
     @Override
     public List<HoaDon> getAll() {
@@ -59,6 +60,13 @@ public class HoaDonService implements ICommonService<HoaDon, String> {
             return "Xoá thất bại";
         }
     }
+    public String updateHoaDonDaThanhToan(HoaDon kh, String ma) {
+        if ((Boolean) hdr2.updateHoaDonDaThanhToan(kh, ma)) {
+            return "Sửa thành công";
+        } else {
+            return "Sửa thất bại";
+        }
+    }
 
 //    public static void main(String[] args) {
 //        
@@ -86,5 +94,4 @@ public class HoaDonService implements ICommonService<HoaDon, String> {
 //        }
 //
 //    }
-
 }

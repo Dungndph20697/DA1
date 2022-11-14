@@ -1080,6 +1080,7 @@ public class ViewTrangChu extends javax.swing.JFrame {
                 GiaoDich gd1 = new GiaoDich(null, hd, "Chuyển khoản", BigDecimal.valueOf(Double.valueOf(txtChuyenKhoan.getText())));
                 String addGD1 = (String) gds.add(gd1);
                 String addHD = (String) hds.update(hd, lbMaHDThanhToan.getText());
+                String addHD2 = (String) hoaDonService.updateHoaDonDaThanhToan(hd, lbMaHDThanhToan.getText());
                 String setTrangThaiBan = (String) banService.update(ban, ban.getMaBan().toString());
                 JOptionPane.showMessageDialog(this, "Thanh toán thành công");
                 lstHoaDonResponses = hoaDonResponseService.getAll();
@@ -1092,6 +1093,7 @@ public class ViewTrangChu extends javax.swing.JFrame {
                 GiaoDich gd = new GiaoDich(null, hd, hinhThucThanhToan, BigDecimal.valueOf(Double.valueOf(txtChuyenKhoan.getText())));
                 String addGD = (String) gds.add(gd);
                 String addHD = (String) hds.update(hd, lbMaHDThanhToan.getText());
+                String addHD2 = (String) hoaDonService.updateHoaDonDaThanhToan(hd, lbMaHDThanhToan.getText());
                 String setTrangThaiBan = (String) banService.update(ban, ban.getMaBan().toString());
                 JOptionPane.showMessageDialog(this, "Thanh toán thành công");
                 lstHoaDonResponses = hoaDonResponseService.getAll();
@@ -1104,6 +1106,7 @@ public class ViewTrangChu extends javax.swing.JFrame {
                 GiaoDich gd = new GiaoDich(null, hd, hinhThucThanhToan, BigDecimal.valueOf(Double.valueOf(txtTienMat.getText())));
                 String addGD = (String) gds.add(gd);
                 String addHD = (String) hds.update(hd, lbMaHDThanhToan.getText());
+                String addHD2 = (String) hoaDonService.updateHoaDonDaThanhToan(hd, lbMaHDThanhToan.getText());
                 String setTrangThaiBan = (String) banService.update(ban, ban.getMaBan().toString());
                 JOptionPane.showMessageDialog(this, "Thanh toán thành công");
                 lstHoaDonResponses = hoaDonResponseService.getAll();
@@ -1189,7 +1192,7 @@ public class ViewTrangChu extends javax.swing.JFrame {
 
     private void tbBan1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBan1MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_tbBan1MouseClicked
 
     private void txtTienMatInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtTienMatInputMethodTextChanged
